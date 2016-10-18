@@ -1,0 +1,5 @@
+/home/nichole/Spares/Spares/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/nichole/Spares/Spares/bin/Debug/Spares.exe.mdb
+/home/nichole/Spares/Spares/bin/Debug/Spares.exe
+/home/nichole/Spares/Spares/obj/x86/Debug/Spares.exe
+/home/nichole/Spares/Spares/obj/x86/Debug/Spares.exe.mdb
