@@ -60,21 +60,21 @@ namespace Spares {
 				if (currentThrow == 1 && numPinsDown == numPinsLeft) {
 					frameScore += numPinsDown;
 					frameScore += strike ();
-					break; //This should work
+					break;
 				}
 
 				//If spare
 				else if (currentThrow == 2 && numPinsDown == numPinsLeft) {
 					frameScore += numPinsDown;
 					frameScore += spare ();
-					break; //This should work
+					break;
 				}
 
 				//Else it's an open frame
 				else if (numPinsDown <= numPinsLeft) {
 					numPinsLeft -= numPinsDown;
 					frameScore += numPinsDown;
-					Console.WriteLine (numPinsDown + " pin(s) hit! " + numPinsLeft + " pin(s) left."); //Could this be a seperate funciton?
+					Console.WriteLine (numPinsDown + " pin(s) hit! " + numPinsLeft + " pin(s) left."); //Could this be a separate funciton?
 				}
 
 			}
@@ -114,7 +114,7 @@ namespace Spares {
 
 				numPinsLeft -= numPinsDown;
 				strikeScore += numPinsDown;
-				Console.WriteLine (numPinsDown + " pin(s) hit! " + numPinsLeft + " pin(s) left."); //Could this be a seperate funciton?
+				Console.WriteLine (numPinsDown + " pin(s) hit! " + numPinsLeft + " pin(s) left."); //Could this be a separate funciton?
 
 				//Reset pins if they were all knocked down
 				if (numPinsLeft == 0){
@@ -143,19 +143,19 @@ namespace Spares {
 		//TODO: Add symbol row and final score (maybe). This works fine right now.
 		public static void drawScoreboard(string[] roundScoreArray, string[] totalScoreArray){
 
-			Console.WriteLine (" ###########################################################################");
-			Console.WriteLine (" #    FRAME    #   1 #   2 #   3 #   4 #   5 #   6 #   7 #   8 #   9 #  10 #");
-			Console.WriteLine (" ###########################################################################");
-			Console.Write (" # ROUND SCORE");
+            Console.WriteLine (" +-------------------------------------------------------------------------+");
+			Console.WriteLine (" |    FRAME    |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |");
+			Console.WriteLine (" |-------------------------------------------------------------------------|");
+			Console.Write (" | ROUND SCORE");
 			for (int i = 0; i < 10; i++){
-				Console.Write(String.Format(" # {0,3}", roundScoreArray[i]));
+				Console.Write(String.Format(" | {0,3}", roundScoreArray[i]));
 			}
-			Console.Write (" # \n ########################################################################### \n");
-			Console.Write (" # TOTAL SCORE");
+			Console.Write (" | \n |-------------------------------------------------------------------------| \n");
+			Console.Write (" | TOTAL SCORE");
 			for (int i = 0; i < 10; i++){
-				Console.Write(String.Format(" # {0,3}", totalScoreArray[i]));
+				Console.Write(String.Format(" | {0,3}", totalScoreArray[i]));
 			}
-			Console.Write (" # \n ###########################################################################");
+			Console.Write (" | \n +-------------------------------------------------------------------------+");
 			Console.WriteLine ("\n");
 		}
 	}
