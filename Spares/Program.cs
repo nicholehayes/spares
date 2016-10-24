@@ -1,162 +1,104 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Spares {
 
 	class MainClass {
+	
+		static bool userCorrectInput = false;
+		static int numFrames = 10;
+		//static List<Player> playerList = new List<Player>();
+		//static int numPlayers;
+		//static int playerNum;
+		//static string playerName;
 
 		public static void Main (string[] args) {
 		
 			//TODO: Add a new row in the scoreboard that shows symbols for strikes/spares/open frames.
-			//TODO: Implement special tenth frame properly. (It works right now; could be made better)
+			//TODO: Implement strikes/spares properly. Has to read the next rolls after the strike/spare.
 			//TODO: Implement a way for users to specify how many frames they want.
-		
+			//TODO: Ask the user how many players are playing, then ask for their names. This eliminates the List problem.
+
+			//TODO: Need to check input thats not of the right type, right now it crashes.
+			//TODO: Create pin objects, assign them indexes in a pin array (keeps track of which pins are down/up)
+			//TODO: Maybe implement a game object class with a specified number of frames? Could help with multiplayer.
+			//TODO: try to use "foreach" in loops if an index isn't required
+
 			Console.WriteLine ("Welcome to Spares!\n");
-			playGame();
+
+			//enterFrames ();
+
+			Game game = new Game (numFrames);
+			game.playGame ();
+
+			//enterPlayerNum ();
+			//enterPlayerName ();
+
+			//Console.WriteLine (playerList.Count);
+
+			//foreach(Player player in playerList){
+			//	player.getName ();
+				//Game game = new Game (numFrames, player.getName());
+			//}
+
+			//Game game1 = new Game (numFrames);
+
+			//game1.playGame ();
 		}
-			
-		//
-		public static void playGame(){
+
+		/*
+		public static void enterFrames() {
+
+			do {
+				Console.Write ("Please enter the number of desired frames (Up to 10): ");
+				numFrames = Convert.ToInt32 (Console.ReadLine ()); //How to test if user input a letter/symbol?
+
+				if(numFrames < 1 || numFrames > 10) {
+					continue;
+				}else{
+					userCorrectInput = true;
+				}
+			} while(userCorrectInput == false);
+			Console.WriteLine ();
+		}
+
+
+		public static void enterPlayerNum() {
 		
-			int currentFrame;
-			int frameScore;
-			int totalScore = 0;
-			//string[] symbolScoreArray = new string[10]; (Move to separate function)
-			string[] frameScoreArray = new string[10];
-			string[] totalScoreArray = new string[10];
+			do {
+				Console.Write ("Please enter the number of players that will be bowling today (Up to 4): ");
+				numPlayers = Convert.ToInt32 (Console.ReadLine ()); //How to test if user input a letter/symbol?
 
-			//Plays a game of 10 frames, resets the frame score for each 
-			//and draws the scoreboard after each frame
-			for(currentFrame = 1; currentFrame <= 10; currentFrame++) {
-				frameScore = 0;
-
-				frameScore = frame(currentFrame.ToString());
-
-				totalScore += frameScore;
-
-				//createSymbolArray ();
-				frameScoreArray [currentFrame - 1] = frameScore.ToString();
-				totalScoreArray [currentFrame - 1] = totalScore.ToString();
-
-				drawScoreboard (frameScoreArray, totalScoreArray);
-			}
-
-			Console.WriteLine ("Game Over! Total Score: " + totalScore);
-		}
-
-
-		//The start of a frame without regarding strikes/spares
-		public static int frame(string currentFrame){
-		
-			int currentThrow;
-			int numPinsDown;
-			int frameScore = 0;
-			int numPinsLeft = 10;
-
-			for (currentThrow = 1; currentThrow <= 2; currentThrow++) {
-			
-				numPinsDown = throwBall (currentFrame, currentThrow, numPinsLeft);
-
-				//If strike
-				if (currentThrow == 1 && numPinsDown == numPinsLeft) {
-					frameScore += numPinsDown;
-					frameScore += strike ();
-					break;
-				}
-
-				//If spare
-				else if (currentThrow == 2 && numPinsDown == numPinsLeft) {
-					frameScore += numPinsDown;
-					frameScore += spare ();
-					break;
-				}
-
-				//Else it's an open frame
-				else if (numPinsDown <= numPinsLeft) {
-					numPinsLeft -= numPinsDown;
-					frameScore += numPinsDown;
-					Console.WriteLine (numPinsDown + " pin(s) hit! " + numPinsLeft + " pin(s) left."); //Could this be a separate funciton?
-				}
-
-			}
-
-			return frameScore;
-		}
-
-
-		public static int throwBall(string currentFrame, int currentThrow, int numPinsLeft){
-			int numPinsDown;
-
-			while (true) {
-				Console.Write ("FRAME " + currentFrame + " THROW " + currentThrow + ": Enter the number of pins knocked down: ");
-				numPinsDown = Convert.ToInt32 (Console.ReadLine ());
-
-				if (0 <= numPinsDown && numPinsDown <= numPinsLeft) {
-					return numPinsDown;
+				if (numPlayers < 1 || numPlayers > 4) {
+					continue;
 				} else {
-					Console.WriteLine ("Please enter a number of pins that is less than or equal to the current standing number of pins.");
+					userCorrectInput = true;
 				}
-			}
+
+			} while(userCorrectInput == false);
+				
+			userCorrectInput = false;
 		}
 
 
-		public static int strike(){
-			string currentFrame = "STRIKE";
-			int currentThrow;
-			int numPinsLeft = 10;
-			int numPinsDown;
-			int strikeScore = 0;
+		public static void enterPlayerName() {
 
-			Console.WriteLine ("STRIKE!!");
+			for (playerNum = 0; playerNum < numPlayers; playerNum++) {
+				do {
+					Console.Write ("Enter Player " + (playerNum + 1) + "'s name: ");
+					playerName = Console.ReadLine ();
 
-			for (currentThrow = 1; currentThrow <= 2; currentThrow++) {
+					//If the user just entered spaces without a name
+					if(string.IsNullOrWhiteSpace(playerName)){
+						continue;
+					}else{
+						userCorrectInput = true;
+					}
+				} while (userCorrectInput == false);
 
-				numPinsDown = throwBall (currentFrame, currentThrow, numPinsLeft);
-
-				numPinsLeft -= numPinsDown;
-				strikeScore += numPinsDown;
-				Console.WriteLine (numPinsDown + " pin(s) hit! " + numPinsLeft + " pin(s) left."); //Could this be a separate funciton?
-
-				//Reset pins if they were all knocked down
-				if (numPinsLeft == 0){
-					numPinsLeft = 10;
-				}
+				playerList.Add (new Player(playerName) );
 			}
-			Console.WriteLine ("Strike Round Score: " + strikeScore);
-			return strikeScore;
-
 		}
-			
-
-		public static int spare(){
-			string currentFrame = "SPARE";
-			int currentThrow = 1;
-			int numPinsLeft = 10;
-			int spareScore = 0;
-
-			Console.WriteLine ("SPARE!");
-			spareScore += throwBall (currentFrame, currentThrow, numPinsLeft);
-
-			return spareScore;
-		}
-			
-
-		//TODO: Add symbol row and final score (maybe). This works fine right now.
-		public static void drawScoreboard(string[] roundScoreArray, string[] totalScoreArray){
-
-            Console.WriteLine (" +-------------------------------------------------------------------------+");
-			Console.WriteLine (" |    FRAME    |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |");
-			Console.WriteLine (" |-------------------------------------------------------------------------|");
-			Console.Write (" | ROUND SCORE");
-			for (int i = 0; i < 10; i++){
-				Console.Write(String.Format(" | {0,3}", roundScoreArray[i]));
-			}
-			Console.Write (" | \n |-------------------------------------------------------------------------| \n");
-			Console.Write (" | TOTAL SCORE");
-			for (int i = 0; i < 10; i++){
-				Console.Write(String.Format(" | {0,3}", totalScoreArray[i]));
-			}
-			Console.Write (" | \n +-------------------------------------------------------------------------+");
-			Console.WriteLine ("\n");
-		}
+		*/
 	}
 }

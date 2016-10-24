@@ -1,8 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Game.cs">
     <Files>
-      <File FileName="Program.cs" Line="22" Column="22" />
+      <File FileName="Program.cs" Line="26" Column="26" />
+      <File FileName="Game.cs" Line="3" Column="3" />
+      <File FileName="Pin.cs" Line="4" Column="4" />
+      <File FileName="Frame.cs" Line="26" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
