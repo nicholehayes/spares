@@ -3,3 +3,13 @@
 /home/nichole/Spares/Spares/bin/Debug/Spares.exe
 /home/nichole/Spares/Spares/obj/x86/Debug/Spares.exe
 /home/nichole/Spares/Spares/obj/x86/Debug/Spares.exe.mdb
+/home/nichole/Spares2/spares-usernames/Spares/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/nichole/Spares2/spares-usernames/Spares/bin/Debug/Spares.exe.mdb
+/home/nichole/Spares2/spares-usernames/Spares/bin/Debug/Spares.exe
+/home/nichole/Spares2/spares-usernames/Spares/obj/x86/Debug/Spares.exe
+/home/nichole/Spares2/spares-usernames/Spares/obj/x86/Debug/Spares.exe.mdb
+/home/nichole/Spares2/NicholeHayes_Spares/Spares/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/nichole/Spares2/NicholeHayes_Spares/Spares/bin/Debug/Spares.exe.mdb
+/home/nichole/Spares2/NicholeHayes_Spares/Spares/bin/Debug/Spares.exe
+/home/nichole/Spares2/NicholeHayes_Spares/Spares/obj/x86/Debug/Spares.exe
+/home/nichole/Spares2/NicholeHayes_Spares/Spares/obj/x86/Debug/Spares.exe.mdb
